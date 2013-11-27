@@ -4,31 +4,20 @@ class Matriz
    attr_reader :filas,:columnas, :valor, :matriz, :m1, :m2
    attr_writer :resultado
 
+#Inicializa una matriz. Usa como valor de entrada un vector de vectores
 def initialize( valor_entrada) 
         @filas = valor_entrada.length
 	@columnas = valor_entrada[0].length
    	@matriz =  Array.new(filas){Array.new(columnas)}
-   	for i in 0...@filas
-       		for j in 0...@columnas
+
+   	@filas.times{ |i|
+       		@columnas.times{ |j|
           	matriz[i][j] = valor_entrada[i][j]
-       		end
-   	end
+       		}
+   	}
 end
 
-
-#def to_s
-#        i=0
-#	txt = "";
-#        rango = 0...@filas
-#        rango_txt = rango.to_a
-#        txt += "\n   #{rango_txt.join("  ")}\n"
-#        for fila in @matriz
-#                txt += "#{i} #{fila}\n"
-#                i += 1
-#        end
-#	return txt
-#end
-
+# Muestra una matriz por pantalla ( usa puts )
 def muestra_matriz(matriz)
 	i=0
 	rango = 0...matriz[0].length
@@ -40,10 +29,7 @@ def muestra_matriz(matriz)
 	end
 end
 
-def hacer_matriz(filas,columnas, valor)
-	array_devolucion = Array.new(filas){Array.new(columnas, valor)}
-end
-
+#Multiplicación entre matrices
 def *(m2)
         dimensiones=[[@filas, @columnas],[m2.filas, m2.columnas]]
         filas_final = dimensiones[0][0]
@@ -68,7 +54,7 @@ def *(m2)
         return Matriz.new(resultado)
 end
 
-
+#Suma de matrices
 def +(m2)
 	filas_final = @filas
 	columnas_final = @columnas
@@ -81,18 +67,18 @@ def +(m2)
 	return Matriz.new(resultado)
 end
 
+#Sobrecarga del operador de modificación sobre un elemento de la matriz
 def []=(i,j,x)
    @matriz[i][j] = x
 end
 
+#Sobrecarga del operador de acceso a un elemento de la matriz
 def [](i,j)  
   @matriz[i][j]
 end
 
-#def [](i)
-#  @matriz[i]
-#end
-
+#Sobrecarga del operador de comparación
+#Comprueba si una matriz es igual a otra dada
 def == (other)
  	filas_final = @filas
 	columnas_final = @columnas
@@ -105,6 +91,7 @@ def == (other)
 	return(resultado)
 end 
 
+#Función que nos dice el porcentaje de ceros presentes
 def porcentaje_ceros()
    ceros = 0;
    for i in 0...@filas
@@ -117,19 +104,7 @@ def porcentaje_ceros()
    porcentaje = Float(ceros)/(@filas * @columnas)
 end
 
-#def = (m1)
-#   filas = m1.filas
-#   columnas = m1.columnas
-#   matriz =  Array.new(filas){Array.new(columnas)}
-#   for i inº 0...filas
-#       for j in 0...columnas
-#          matriz[i][j] = m1[i][j]
-#       end
-#   end
-#   resultado = Matriz.new(filas, columnas)
-   
-#end
-
+#Función que calcula el máximo elemento de una matriz
 def maximo()
 	maximo = matriz[0][0];
 	for i in 0...@filas
@@ -142,6 +117,7 @@ def maximo()
 	return maximo
 end
 
+#Función que calcula el minimo elemento de una matriz
 def minimo()
 	mimino = matriz[0][0];
 	for i in 0...@filas
@@ -155,20 +131,24 @@ def minimo()
 end
 end
 
-# ------------------------------------------------------------- 
-#                      Matriz dispersa                        -
-#--------------------------------------------------------------
+# Matriz dispersa                        
+# Hereda de Matriz
+# Representa matrices con más de un 60% de ceros
+# Se han implementado la suma y la multiplicación, para permitir hacer
+# sumas y multiplicaciones con MatrizDensa y MatrizDispersa. Se ha implementado
+# una función de acceso a los elementos y para modificarlos
 class MatrizDispersa < Matriz
 	attr_reader :hash_no_nulos
+	#Inicializa una matriz. Usa como valor de entrada un vector de vectores
+	#O un array con la concatenación x-y como clave
+	#Añade a la representación interna solo los elementos distintos de 0
 	def initialize(matriz_entrada)
-		#puts(matriz_entrada.class)
 		if(matriz_entrada.is_a?Hash)
 			@hash_no_nulos = {};
 			i = 0
 			j = 0
 			matriz_entrada.each do |key,val|
 				arr_key = key.split("-");
-				#puts(arr_key)
 				if(arr_key[0].to_i > i)
 					i = arr_key[0].to_i
 				end
@@ -195,17 +175,23 @@ class MatrizDispersa < Matriz
 		end
 	end
 
+	#Sobrecarga del operador de modificación sobre un elemento de la matriz
 	def []=(i,j,x)
 		if(x != 0)
 	   		@hash_no_nulos[i.to_s+"-"+j.to_s] = x
 		end
 	end
 
+	#Sobrecarga del operador de acceso a un elemento de la MatrizDispersa
 	def [](i,j)
 	  val = @hash_no_nulos[i.to_s+"-"+j.to_s]
 	  val = (val == nil)?0:val
 	end
 
+	#comprueba el número de ceros presentes en la matriz
+	#Si es inferior al 60%, esta función devuelve al propio objeto (self)
+	#Si es superior o igual, devuelve una MatrizDispersa
+	#Usado para que al hacer una operación se pueda devolver el tipo adecuado
 	def comprobar_tipo_return()
 		if(porcentaje_ceros > 0.6)
 			return self
@@ -221,10 +207,14 @@ class MatrizDispersa < Matriz
 		end
 	end
 
+	#Función que nos dice el porcentaje de ceros en la matriz
 	def porcentaje_ceros()
-		return(Float(@hash_no_nulos.length)/@filas*@columnas)
+		return(Float(@filas*@columnas - @hash_no_nulos.length)/@filas*@columnas)
 	end
 
+	# sobrecarga del operador de suma para matriz dispersa
+	# Comprueba el tipo de datos devuelto para devolver un tipo MatrizDensa o MatrizDispersa
+	# Según la cantidad de ceros
 	def +(other)
 		#puts(other.class)
 		#devolucion = Matriz
@@ -254,6 +244,9 @@ class MatrizDispersa < Matriz
 		end
 	end
 
+	# sobrecarga del operador de multiplicación para matriz dispersa
+	# Comprueba el tipo de datos devuelto para devolver un tipo MatrizDensa o MatrizDispersa
+	# Según la cantidad de ceros
 	def *(other)
 		if(other.is_a?MatrizDensa)
 			filas_final = @filas
@@ -308,23 +301,22 @@ class MatrizDispersa < Matriz
                end	
         end
 
+	# Calcula el elemento con mayor valor de la matriz dispersa (incluyendo 0)
 	def maximo()
-		maximo = nil;
+		maximo = 0;
 		@hash_no_nulos.each do |key,valor|
-			if(maximo == nil)
-				maximo = valor
-			elsif (valor > maximo)
+			if (valor > maximo)
 				maximo = valor
 			end
                 end
 		return maximo
 	end
+
+	# Calcula el elemento con menor valor de la matriz (incluyendo 0)
 	def minimo()
-		minimo = nil;
+		minimo = 0;
 		@hash_no_nulos.each do |key,valor|
-			if(minimo == nil)
-				minimo = valor
-			elsif (valor < minimo)
+			if (valor < minimo)
 				minimo = valor
 			end
                 end
@@ -335,9 +327,18 @@ end
 # ------------------------------------------------------------- 
 #                      Matriz densa                           -
 #--------------------------------------------------------------
+# Hereda de Matriz
+# Representa matrices con menos de un 60% de ceros
+# Se han implementado la suma y la multiplicación, para permitir hacer
+# sumas y multiplicaciones con MatrizDensa y MatrizDispersa
+# Muy parecida a la matriz original
 
 class MatrizDensa < Matriz
 
+	#comprueba el número de ceros presentes en la matriz
+	#Si es inferior al 60%, esta función devuelve al propio objeto (self)
+	#Si es superior o igual, devuelve una MatrizDispersa
+	#Usado para que al hacer una operación se pueda devolver el tipo adecuado
 	def comprobar_tipo_return()
 		if(porcentaje_ceros < 0.6)
 			return self
@@ -348,9 +349,10 @@ class MatrizDensa < Matriz
 		end
 	end
 
+	# sobrecarga del operador de suma para matriz densa
+	# Comprueba el tipo de datos devuelto para devolver un tipo MatrizDensa o MatrizDispersa
+	# Según la cantidad de ceros
 	def +(other)
-		#puts(other.class)
-		#devolucion = Matriz
 		if((other.is_a?MatrizDispersa))
 			filas_final = @filas
 			columnas_final = @columnas
@@ -362,7 +364,6 @@ class MatrizDensa < Matriz
 			end
 			return (MatrizDensa.new(resultado).comprobar_tipo_return())
 		elsif(other.is_a?MatrizDensa)
-			#muestra_matriz(@matriz)
 			filas_final = @filas
 			columnas_final = @columnas
 			resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
@@ -376,6 +377,9 @@ class MatrizDensa < Matriz
 		end
 	end
 	
+	# sobrecarga del operador de multiplicación para matriz densa
+	# Comprueba el tipo de datos devuelto para devolver un tipo MatrizDensa o MatrizDispersa
+	# Según la cantidad de ceros
 	def *(other)
 		if(other.is_a?MatrizDispersa)
 			filas_final = @filas
