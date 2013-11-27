@@ -18,17 +18,6 @@ def initialize( valor_entrada)
    	}
 end
 
-# Muestra una matriz por pantalla ( usa puts )
-def muestra_matriz(matriz)
-	i=0
-	rango = 0...matriz[0].length
-	rango_txt = rango.to_a
-	print "\n   #{rango_txt.join("  ")}\n"
-	for fila in matriz
-		puts "#{i} #{fila}"
-		i += 1
-	end
-end
 
 #Multiplicación entre matrices
 def *(m2)
@@ -36,22 +25,22 @@ def *(m2)
         filas_final = dimensiones[0][0]
         columnas_final = dimensiones[1][1]
         resultado = Array.new(filas_final){Array.new(columnas_final)}
-        for i in 0...@filas
-                for j in 0...m2.columnas
+      	@filas.times { |i|
+                m2.columnas.times { |j|
                         temp = Array.new(dimensiones[0][0])
                         val1 = @matriz[i][0]
                         val2 = m2.[](0,j)
 			#temp[0] = @matriz[i][0] * m2[0][j];
 			temp[0] = val1 * val2;
-                        for k in 1...@columnas
+                        1.upto(@columnas-1) do |k|
                                 val1 = @matriz[i][k]
                                 val2 = m2.[](k,j)
 				temp2 =  val1 * val2
                                 temp[k] = temp2
                         end
                         resultado[i][j] = temp.reduce(:+)
-                end
-        end
+               }
+        }
         return Matriz.new(resultado)
 end
 
@@ -60,11 +49,11 @@ def +(m2)
 	filas_final = @filas
 	columnas_final = @columnas
 	resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
-	for i in 0...@filas
-		for j in 0...@columnas
+	@filas.times { |i| 
+		@columnas.times { |j|
 			resultado[i][j] = @matriz[i][j] +m2.matriz[i][j]
-		end 
-	end
+		}
+	}
 	return Matriz.new(resultado)
 end
 
@@ -84,24 +73,24 @@ def == (other)
  	filas_final = @filas
 	columnas_final = @columnas
 	resultado = true
-	for i in 0...@filas
-		for j in 0...@columnas
+	@filas.times { |i| 
+		@columnas.times { |j|
 			resultado &= (self.[](i,j) == other.[](i,j))
-		end 
-	end
+		}
+	}
 	return(resultado)
 end 
 
 #Función que nos dice el porcentaje de ceros presentes
 def porcentaje_ceros()
    ceros = 0;
-   for i in 0...@filas
-       for j in 0...@columnas
+   @filas.times { |i| 
+	@columnas.times { |j|
           if(@matriz[i][j] == 0)
 		ceros += 1
           end
-       end
-   end
+  	}
+   }
    porcentaje = Float(ceros)/(@filas * @columnas)
 end
 
@@ -342,7 +331,6 @@ class MatrizDensa < Matriz
 		if(porcentaje_ceros < 0.6)
 			return self
 		elsif
-			#muestra_matriz(@matriz)
 			devolucion = MatrizDispersa.new(@matriz)
 			return(devolucion)
 		end
