@@ -138,9 +138,13 @@
     <h1 class="class">MatrizDensa</h1>
 
     <div id="description" class="description">
-      <hr style="height: 10px">
-
-<pre>Matriz densa                           -</pre>
+      
+<p><a href="Matriz.html">Matriz</a> densa. Hereda de <a
+href="Matriz.html">Matriz</a>. Representa matrices con menos de un 60% de
+ceros. Se han implementado la suma y la multiplicación, para permitir hacer
+sumas y multiplicaciones con <a href="MatrizDensa.html">MatrizDensa</a> y
+<a href="MatrizDispersa.html">MatrizDispersa</a> Muy parecida a la matriz
+original</p>
 
     </div><!-- description -->
 
@@ -184,7 +188,7 @@ href="MatrizDispersa.html">MatrizDispersa</a> Según la cantidad de ceros</p>
             
             <div class="method-source-code" id="2A-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 383</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 382</span>
 <span class="ruby-keyword">def</span> *(<span class="ruby-identifier">other</span>)
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span><span class="ruby-constant">MatrizDispersa</span>)
                 <span class="ruby-identifier">filas_final</span> = <span class="ruby-ivar">@filas</span>
@@ -266,7 +270,7 @@ href="MatrizDispersa.html">MatrizDispersa</a> Según la cantidad de ceros</p>
             
             <div class="method-source-code" id="2B-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 355</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 354</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">other</span>)
         <span class="ruby-keyword">if</span>((<span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span><span class="ruby-constant">MatrizDispersa</span>))
                 <span class="ruby-identifier">filas_final</span> = <span class="ruby-ivar">@filas</span>
@@ -323,7 +327,7 @@ que al hacer una operación se pueda devolver el tipo adecuado</p>
             
             <div class="method-source-code" id="comprobar_tipo_return-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 342</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 341</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">comprobar_tipo_return</span>()
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">porcentaje_ceros</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0.6</span>)
                 <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>

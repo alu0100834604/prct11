@@ -173,6 +173,8 @@
 
     <div id="description" class="description">
       
+<p>Clase que define una fracción, con las operaciones suma y resta, mcd y mcm</p>
+
     </div><!-- description -->
 
     
@@ -201,7 +203,7 @@
 
           <div class="method-description">
           
-          
+          <p>Lectura de atributos para el numerador y el denominador</p>
           
           </div>
         </div>
@@ -216,7 +218,7 @@
 
           <div class="method-description">
           
-          
+          <p>Lectura de atributos para el numerador y el denominador</p>
           
           </div>
         </div>
@@ -243,13 +245,13 @@
 
           <div class="method-description">
             
-            
+            <p>Inicialización de la fracción con numerador y denominador</p>
             
 
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 13</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">num</span>, <span class="ruby-identifier">denom</span>)
    <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;El denominador no puede ser cero&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">denom</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-value">0</span>
 
@@ -286,13 +288,13 @@
 
           <div class="method-description">
             
-            
+            <p>Módulo de fracciones</p>
             
 
             
             <div class="method-source-code" id="25-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 50</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 63</span>
    <span class="ruby-keyword">def</span> <span class="ruby-operator">%</span> (<span class="ruby-identifier">other</span>)
 <span class="ruby-comment">      temp = self / other
       self - temp
@@ -321,13 +323,13 @@
 
           <div class="method-description">
             
-            
+            <p>Multiplicación de fracciones</p>
             
 
             
             <div class="method-source-code" id="2A-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 45</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 57</span>
 <span class="ruby-keyword">def</span> * (<span class="ruby-identifier">other</span>)
    ((<span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Numeric</span>)<span class="ruby-operator">?</span> <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@num</span> * <span class="ruby-identifier">other</span> , <span class="ruby-ivar">@denom</span> ) <span class="ruby-operator">:</span> <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@num</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">num</span> , <span class="ruby-ivar">@denom</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span> ))
 
@@ -355,13 +357,13 @@
 
           <div class="method-description">
             
-            
+            <p>Suma de fracciones</p>
             
 
             
             <div class="method-source-code" id="2B-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 37</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">other</span>)
      ((<span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Numeric</span>)<span class="ruby-operator">?</span>  <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">other</span> * <span class="ruby-ivar">@denom</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@num</span>, <span class="ruby-ivar">@denom</span> ) <span class="ruby-operator">:</span> <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@num</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">num</span> * <span class="ruby-ivar">@denom</span>, <span class="ruby-ivar">@denom</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span> ))
 <span class="ruby-keyword">end</span></pre>
@@ -388,13 +390,13 @@
 
           <div class="method-description">
             
-            
+            <p>Resta de fracciones</p>
             
 
             
             <div class="method-source-code" id="2D-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 41</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">other</span>)
    <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@num</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">num</span> * <span class="ruby-ivar">@denom</span>, <span class="ruby-ivar">@denom</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span> )
 <span class="ruby-keyword">end</span></pre>
@@ -421,13 +423,13 @@
 
           <div class="method-description">
             
-            
+            <p>Operador de - (unario)</p>
             
 
             
             <div class="method-source-code" id="2D-40-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 58</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">-@</span>
    ((<span class="ruby-ivar">@num</span><span class="ruby-operator">==</span><span class="ruby-ivar">@num</span>.<span class="ruby-identifier">abs</span>)<span class="ruby-operator">?</span> <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">-</span><span class="ruby-ivar">@num</span>,<span class="ruby-ivar">@denom</span>) <span class="ruby-operator">:</span> <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@num</span>,<span class="ruby-operator">-</span><span class="ruby-ivar">@denom</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -454,13 +456,13 @@
 
           <div class="method-description">
             
-            
+            <p>Operador de división</p>
             
 
             
             <div class="method-source-code" id="2F-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 62</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">/</span> (<span class="ruby-identifier">other</span>)
    <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@num</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span> , <span class="ruby-ivar">@denom</span> * <span class="ruby-identifier">other</span>.<span class="ruby-identifier">num</span> )
 <span class="ruby-keyword">end</span></pre>
@@ -487,13 +489,13 @@
 
           <div class="method-description">
             
-            
+            <p>Operador de comparación, en conjunción con la interfaz comparable</p>
             
 
             
             <div class="method-source-code" id="3C-3D-3E-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 66</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
    <span class="ruby-constant">Float</span>(<span class="ruby-ivar">@num</span>)<span class="ruby-operator">/</span><span class="ruby-ivar">@denom</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-constant">Float</span>(<span class="ruby-identifier">other</span>.<span class="ruby-identifier">num</span>)<span class="ruby-operator">/</span><span class="ruby-identifier">other</span>.<span class="ruby-identifier">denom</span>
 <span class="ruby-keyword">end</span></pre>
@@ -520,13 +522,13 @@
 
           <div class="method-description">
             
-            
+            <p>Valor absoluto</p>
             
 
             
             <div class="method-source-code" id="abs-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 21</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">abs</span>
    <span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">abs</span>
 <span class="ruby-keyword">end</span></pre>
@@ -553,13 +555,13 @@
 
           <div class="method-description">
             
-            
+            <p>Máximo común divisor</p>
             
 
             
             <div class="method-source-code" id="mcd-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 5</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mcd</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)
    <span class="ruby-identifier">y</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">x</span><span class="ruby-operator">:</span> <span class="ruby-identifier">mcd</span>(<span class="ruby-identifier">y</span>, <span class="ruby-identifier">x</span><span class="ruby-operator">%</span><span class="ruby-identifier">y</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -586,13 +588,13 @@
 
           <div class="method-description">
             
-            
+            <p>Mínimo común múltiplo</p>
             
 
             
             <div class="method-source-code" id="mcm-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 9</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mcm</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>)
    <span class="ruby-identifier">z</span> = <span class="ruby-identifier">x</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">mcd</span>(<span class="ruby-identifier">x</span>,<span class="ruby-identifier">y</span>) * <span class="ruby-identifier">y</span> 
 <span class="ruby-keyword">end</span></pre>
@@ -619,13 +621,13 @@
 
           <div class="method-description">
             
-            
+            <p>Recíproco</p>
             
 
             
             <div class="method-source-code" id="reciprocal-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 25</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reciprocal</span>
    <span class="ruby-constant">Fraccion</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@denom</span>,<span class="ruby-ivar">@num</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -652,13 +654,13 @@
 
           <div class="method-description">
             
-            
+            <p>Convierte a Float</p>
             
 
             
             <div class="method-source-code" id="to_f-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 33</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_f</span>
    <span class="ruby-constant">Float</span>(<span class="ruby-ivar">@num</span>)<span class="ruby-operator">/</span><span class="ruby-ivar">@denom</span>
 <span class="ruby-keyword">end</span></pre>
@@ -685,13 +687,13 @@
 
           <div class="method-description">
             
-            
+            <p>Convierte a string</p>
             
 
             
             <div class="method-source-code" id="to_s-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 29</span>
+<span class="ruby-comment"># File lib/Practica9/Fraccion.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
    <span class="ruby-node">&quot;#@num/#@denom&quot;</span>
 <span class="ruby-keyword">end</span></pre>

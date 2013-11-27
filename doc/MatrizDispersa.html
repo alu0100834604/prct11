@@ -151,8 +151,8 @@
 
     <div id="description" class="description">
       
-<p><a href="Matriz.html">Matriz</a> dispersa                         Hereda de
-<a href="Matriz.html">Matriz</a> Representa matrices con más de un 60% de
+<p><a href="Matriz.html">Matriz</a> dispersa.                       Hereda de
+<a href="Matriz.html">Matriz</a>. Representa matrices con más de un 60% de
 ceros Se han implementado la suma y la multiplicación, para permitir hacer
 sumas y multiplicaciones con <a href="MatrizDensa.html">MatrizDensa</a> y
 <a href="MatrizDispersa.html">MatrizDispersa</a>. Se ha implementado una
@@ -186,7 +186,7 @@ función de acceso a los elementos y para modificarlos</p>
 
           <div class="method-description">
           
-          
+          <p>atributo de lectura: hash interno</p>
           
           </div>
         </div>
@@ -221,7 +221,7 @@ solo los elementos distintos de 0</p>
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 145</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 147</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">matriz_entrada</span>)
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">matriz_entrada</span>.<span class="ruby-identifier">is_a?</span><span class="ruby-constant">Hash</span>)
                 <span class="ruby-ivar">@hash_no_nulos</span> = {};
@@ -292,7 +292,7 @@ href="MatrizDispersa.html">MatrizDispersa</a> Según la cantidad de ceros</p>
             
             <div class="method-source-code" id="2A-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 250</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 252</span>
 <span class="ruby-keyword">def</span> *(<span class="ruby-identifier">other</span>)
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span><span class="ruby-constant">MatrizDensa</span>)
                 <span class="ruby-identifier">filas_final</span> = <span class="ruby-ivar">@filas</span>
@@ -378,7 +378,7 @@ href="MatrizDispersa.html">MatrizDispersa</a> Según la cantidad de ceros</p>
             
             <div class="method-source-code" id="2B-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 218</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 220</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">other</span>)
         <span class="ruby-comment">#puts(other.class)</span>
         <span class="ruby-comment">#devolucion = Matriz</span>
@@ -437,7 +437,7 @@ href="MatrizDispersa.html">MatrizDispersa</a></p>
             
             <div class="method-source-code" id="5B-5D-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 186</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 188</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">i</span>,<span class="ruby-identifier">j</span>)
   <span class="ruby-identifier">val</span> = <span class="ruby-ivar">@hash_no_nulos</span>[<span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;-&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">j</span>.<span class="ruby-identifier">to_s</span>]
   <span class="ruby-identifier">val</span> = (<span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>)<span class="ruby-operator">?</span><span class="ruby-value">0</span><span class="ruby-operator">:</span><span class="ruby-identifier">val</span>
@@ -471,7 +471,7 @@ href="MatrizDispersa.html">MatrizDispersa</a></p>
             
             <div class="method-source-code" id="5B-5D-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 179</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">i</span>,<span class="ruby-identifier">j</span>,<span class="ruby-identifier">x</span>)
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">x</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>)
                <span class="ruby-ivar">@hash_no_nulos</span>[<span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;-&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">j</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">x</span>
@@ -509,7 +509,7 @@ que al hacer una operación se pueda devolver el tipo adecuado</p>
             
             <div class="method-source-code" id="comprobar_tipo_return-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 195</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">comprobar_tipo_return</span>()
         <span class="ruby-keyword">if</span>(<span class="ruby-identifier">porcentaje_ceros</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.6</span>)
                 <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>
@@ -553,7 +553,7 @@ que al hacer una operación se pueda devolver el tipo adecuado</p>
             
             <div class="method-source-code" id="maximo-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 305</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 307</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">maximo</span>()
         <span class="ruby-identifier">maximo</span> = <span class="ruby-value">0</span>;
         <span class="ruby-ivar">@hash_no_nulos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">valor</span><span class="ruby-operator">|</span>
@@ -592,7 +592,7 @@ que al hacer una operación se pueda devolver el tipo adecuado</p>
             
             <div class="method-source-code" id="minimo-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 316</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 318</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">minimo</span>()
         <span class="ruby-identifier">minimo</span> = <span class="ruby-value">0</span>;
         <span class="ruby-ivar">@hash_no_nulos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">valor</span><span class="ruby-operator">|</span>
@@ -631,7 +631,7 @@ que al hacer una operación se pueda devolver el tipo adecuado</p>
             
             <div class="method-source-code" id="porcentaje_ceros-source">
 <pre>
-<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 211</span>
+<span class="ruby-comment"># File lib/Practica9/Matriz.rb, line 213</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">porcentaje_ceros</span>()
         <span class="ruby-keyword">return</span>(<span class="ruby-constant">Float</span>(<span class="ruby-ivar">@filas</span>*<span class="ruby-ivar">@columnas</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@hash_no_nulos</span>.<span class="ruby-identifier">length</span>)<span class="ruby-operator">/</span><span class="ruby-ivar">@filas</span>*<span class="ruby-ivar">@columnas</span>)
 <span class="ruby-keyword">end</span></pre>

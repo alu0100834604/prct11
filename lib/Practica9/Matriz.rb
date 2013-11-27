@@ -1,8 +1,9 @@
 require "Practica9/Fraccion.rb"
- 
+#Clase madre, implementa las operaciones comunes suma y resta, acceso y modificación
+#de elementos.  
 class Matriz
-   attr_reader :filas,:columnas, :valor, :matriz, :m1, :m2
-   attr_writer :resultado
+   #accesores de filas, columnas y la matriz interna
+   attr_reader :filas,:columnas, :matriz
 
 #Inicializa una matriz. Usa como valor de entrada un vector de vectores
 def initialize( valor_entrada) 
@@ -131,13 +132,14 @@ def minimo()
 end
 end
 
-# Matriz dispersa                        
-# Hereda de Matriz
+# Matriz dispersa.                      
+# Hereda de Matriz.
 # Representa matrices con más de un 60% de ceros
 # Se han implementado la suma y la multiplicación, para permitir hacer
 # sumas y multiplicaciones con MatrizDensa y MatrizDispersa. Se ha implementado
 # una función de acceso a los elementos y para modificarlos
 class MatrizDispersa < Matriz
+	#atributo de lectura: hash interno
 	attr_reader :hash_no_nulos
 	#Inicializa una matriz. Usa como valor de entrada un vector de vectores
 	#O un array con la concatenación x-y como clave
@@ -324,11 +326,8 @@ class MatrizDispersa < Matriz
 	end
 end
 
-# ------------------------------------------------------------- 
-#                      Matriz densa                           -
-#--------------------------------------------------------------
-# Hereda de Matriz
-# Representa matrices con menos de un 60% de ceros
+# Matriz densa. Hereda de Matriz.
+# Representa matrices con menos de un 60% de ceros.
 # Se han implementado la suma y la multiplicación, para permitir hacer
 # sumas y multiplicaciones con MatrizDensa y MatrizDispersa
 # Muy parecida a la matriz original

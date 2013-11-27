@@ -1,6 +1,5 @@
 #Clase que define una fracción, con las operaciones suma y resta, mcd y mcm
 class Fraccion
-   #Lectura de atributos para el numerador y el denominador
    attr_reader :num, :denom
    include Comparable
 
