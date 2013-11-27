@@ -13,7 +13,7 @@ def initialize( valor_entrada)
 
    	@filas.times{ |i|
        		@columnas.times{ |j|
-          	matriz[i][j] = valor_entrada[i][j]
+          		matriz[i][j] = valor_entrada[i][j]
        		}
    	}
 end
@@ -97,26 +97,26 @@ end
 #Función que calcula el máximo elemento de una matriz
 def maximo()
 	maximo = matriz[0][0];
-	for i in 0...@filas
-		for j in 0...@columnas
+	@filas.times { |i| 
+		@columnas.times { |j|
 			if(matriz[i][j] > maximo)
 				maximo = @matriz[i][j]
 			end
-		end
-	end
+		}
+	}
 	return maximo
 end
 
 #Función que calcula el minimo elemento de una matriz
 def minimo()
 	mimino = matriz[0][0];
-	for i in 0...@filas
-		for j in 0...@columnas
+	@filas.times { |i| 
+		@columnas.times { |j|
 			if(matriz[i][j] < minimo)
 				maximo = @matriz[i][j]
 			end
-		end
-	end
+		}
+	}
 	return minimo
 end
 end
@@ -156,13 +156,13 @@ class MatrizDispersa < Matriz
 			@hash_no_nulos = {}
 			@filas = matriz_entrada.length
 			@columnas = matriz_entrada[0].length
-			for i in 0...@filas
-				for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
 					if(matriz_entrada[i][j] != 0)
 						@hash_no_nulos[i.to_s+"-"+j.to_s] = matriz_entrada[i][j]
 					end
-				end
-			end
+				}
+			}
 		end
 	end
 
@@ -188,11 +188,11 @@ class MatrizDispersa < Matriz
 			return self
 		elsif
 		   	matriz =  Array.new(@filas){Array.new(@columnas)}
-		   	for i in 0...@filas
-		       		for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
 			  		matriz[i][j] = self.[](i,j)
-		       		end
-		   	end
+				}
+			}
 			devolucion = MatrizDensa.new(matriz)
 			return (devolucion)
 		end
@@ -213,11 +213,11 @@ class MatrizDispersa < Matriz
 			filas_final = @filas
 			columnas_final = @columnas
 			resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
-			for i in 0...@filas
-				for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
 					resultado[i][j] = self.[](i,j) +other.matriz[i][j]
-				end 
-			end
+				}
+			}
 			return MatrizDensa.new(resultado).comprobar_tipo_return()						
 		elsif(other.is_a?MatrizDispersa)
 			hash_final = {}
@@ -244,14 +244,14 @@ class MatrizDispersa < Matriz
 			columnas_final = @columnas
 			resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
 			dimensiones=[[@filas, @columnas],[other.filas, other.columnas]]
-			for i in 0...@filas
-                		for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
                         		temp = Array.new(dimensiones[0][0])
                         		val1 = self.[](i,0)
 		                        val2 = other.[](0,j)
 					
 					temp[0] = val1 * val2;
-		                        for k in 1...@columnas
+		                        1.upto(@columnas-1) do |k|
 	                                	val1 = self.[](i,k)
 		                                val2 = other.[](k,j)
 						temp2 =  val1 * val2
@@ -259,8 +259,8 @@ class MatrizDispersa < Matriz
 	                        	end
 	                        	resultado[i][j] = temp.reduce(:+)
                         	 
-                        	end
-                        end
+                        	}
+                        }
                         
 	 		return MatrizDensa.new(resultado).comprobar_tipo_return()
                elsif(other.is_a?MatrizDispersa)
@@ -268,14 +268,14 @@ class MatrizDispersa < Matriz
 			columnas_final = @columnas
 			resultado2 = {}
 			 dimensiones=[[@filas, @columnas],[other.filas, other.columnas]]
-			for i in 0...@filas
-                		for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
                         		temp = Array.new(dimensiones[0][0])
                         		val1 = self.[](i,0)
 		                        val2 = other.[](0,j)
 					
 					temp[0] = val1 * val2;
-		                        for k in 1...@columnas
+		                        1.upto(@columnas-1) do |k|
 	                                	val1 = self.[](i,k)
 		                                val2 = other.[](k,j)
 						temp2 =  val1 * val2
@@ -285,8 +285,8 @@ class MatrizDispersa < Matriz
                         	 	if( tmp_reduced != nil)
 						resultado2[i.to_s+"-"+j.to_s] = tmp_reduced
 					end
-                        	end
-                        end
+                        	}
+                        }
                         
 	 		return MatrizDispersa.new(resultado2).comprobar_tipo_return()
                end	
@@ -344,21 +344,21 @@ class MatrizDensa < Matriz
 			filas_final = @filas
 			columnas_final = @columnas
 			resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
-			for i in 0...@filas
-				for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
 					resultado[i][j] = other.[](i,j) + @matriz[i][j]
-				end 
-			end
+				}
+			}
 			return (MatrizDensa.new(resultado).comprobar_tipo_return())
 		elsif(other.is_a?MatrizDensa)
 			filas_final = @filas
 			columnas_final = @columnas
 			resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
-			for i in 0...@filas
-				for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
 					resultado[i][j] = @matriz[i][j] +other.matriz[i][j]
-				end 
-			end
+				} 
+			}
 			devolucion = MatrizDensa.new(resultado).comprobar_tipo_return()
 			return (devolucion)			
 		end
@@ -373,14 +373,14 @@ class MatrizDensa < Matriz
 			columnas_final = @columnas
 			resultado = Array.new(filas_final){Array.new(columnas_final, 0)}
 			dimensiones=[[@filas, @columnas],[other.filas, other.columnas]]
-			for i in 0...@filas
-                		for j in 0...@columnas
+			@filas.times { |i| 
+				@columnas.times { |j|
                         		temp = Array.new(dimensiones[0][0])
                         		val1 = self.[](i,0)
 		                        val2 = other.[](0,j)
 					
 					temp[0] = val1 * val2;
-		                        for k in 1...@columnas
+		                        1.upto(@columnas-1) do |k|
 	                                	val1 = self.[](i,k)
 		                                val2 = other.[](k,j)
 						temp2 =  val1 * val2
@@ -388,8 +388,8 @@ class MatrizDensa < Matriz
 	                        	end
 	                        	resultado[i][j] = temp.reduce(:+)
                         	 
-                        	end
-                        end
+                        	}
+                        }
                         
 	 		return MatrizDensa.new(resultado).comprobar_tipo_return()
                elsif(other.is_a?MatrizDensa)
@@ -397,22 +397,22 @@ class MatrizDensa < Matriz
 			filas_final = dimensiones[0][0]
 			columnas_final = dimensiones[1][1]
 			resultado = Array.new(filas_final){Array.new(columnas_final)}
-			for i in 0...@filas
-				for j in 0...other.columnas
+			@filas.times { |i| 
+				other.columnas.times { |j|
 				        temp = Array.new(dimensiones[0][0])
 				        val1 = @matriz[i][0]
 				        val2 = other.[](0,j)
 					#temp[0] = @matriz[i][0] * m2[0][j];
 					temp[0] = val1 * val2;
-				        for k in 1...@columnas
+				        1.upto(@columnas-1) do |k|
 				                val1 = @matriz[i][k]
 				                val2 = other.[](k,j)
 						temp2 =  val1 * val2
 				                temp[k] = temp2
 				        end
 				        resultado[i][j] = temp.reduce(:+)
-				end
-			end
+				}
+			}
 			return MatrizDensa.new(resultado).comprobar_tipo_return()
                end	
         end
