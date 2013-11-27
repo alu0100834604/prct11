@@ -99,7 +99,7 @@ describe "Operaciones con matrices densas y dispersas/Miscelanacea" do
 
 	it "Calculo de minimo/dispersa" do
 	@resultado = @matriz_dispersa.minimo()
-      	@resultado.should == 1
+      	@resultado.should == 0
         end
 end
 
