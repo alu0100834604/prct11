@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'Practica9/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "Practica9"
-  spec.version       = Practica9::VERSION
+  spec.name          = "Practica12"
+  spec.version       = Practica12::VERSION
   spec.authors       = ["Abraham and Christian"]
   spec.email         = ["abrahamblg@hotmail.es and christian-siedler@hotmail.com"]
   spec.description   = %q{Matrices densas y dispersas}
